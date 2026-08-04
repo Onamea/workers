@@ -23,12 +23,35 @@ const worker = self as unknown as Worker
 
 worker.onmessage = async (event: MessageEvent) => {
 
-  const { primaryName, fingerprint, cryptoName, shouldGenerateMnemonic, mnemonicPassphrase, xPub, offset = 0, maxAttempts } = event.data
+  const {
+    primaryName,
+    fingerprint,
+    cryptoName,
+    shouldGenerateMnemonic,
+    mnemonicPassphrase,
+    xPub,
+    offset = 0,
+    maxAttempts,
+    progressIntervalMs = 100
+  } = event.data
   const searchLength = primaryName.length
   const fingerprintLength = fingerprint?.length
 
   let match = false
   let totalAttempts = 0
+  let lastProgressSent = 0
+
+  const postProgress = () => {
+    const now = Date.now()
+    if (now - lastProgressSent < progressIntervalMs) {
+      return
+    }
+    lastProgressSent = now
+    worker.postMessage({
+      success: false,
+      totalAttempts
+    })
+  }
 
   while (match === false) {
     const index = offset + totalAttempts 
@@ -52,18 +75,15 @@ worker.onmessage = async (event: MessageEvent) => {
       match = true
     } else {
       totalAttempts++
-      worker.postMessage({
-        success: false,
-        totalAttempts
-      })
-    }
-    if (maxAttempts !== undefined && totalAttempts >= maxAttempts) {
-      worker.postMessage({
-        success: false,
-        totalAttempts,
-        maxAttemptsReached: true
-      })
-      break
+      if (maxAttempts !== undefined && totalAttempts >= maxAttempts) {
+        worker.postMessage({
+          success: false,
+          totalAttempts,
+          maxAttemptsReached: true
+        })
+        break
+      }
+      postProgress()
     }
   }
   self.close()

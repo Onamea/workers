@@ -28,7 +28,8 @@ export const spawnWorker = (
   mnemonicPassphrase?: MnemonicPassphrase,
   xPub?: XPub,
   offset?: number,
-  maxAttempts?: number
+  maxAttempts?: number,
+  progressIntervalMs = 100
 ) : [WorkerStatus, Promise<Result>, () => void] => {
 
   const status: WorkerStatus = {
@@ -107,7 +108,17 @@ export const spawnWorker = (
         }
       }
 
-      worker.postMessage({ cryptoName, primaryName, fingerprint, shouldGenerateMnemonic, mnemonicPassphrase, xPub, offset, maxAttempts })
+      worker.postMessage({
+        cryptoName,
+        primaryName,
+        fingerprint,
+        shouldGenerateMnemonic,
+        mnemonicPassphrase,
+        xPub,
+        offset,
+        maxAttempts,
+        progressIntervalMs
+      })
       return worker
     }
 

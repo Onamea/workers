@@ -29,7 +29,8 @@ export default (
   throttleLimit = 1000,
   shouldGenerateMnemonic = false,
   mnemonicPassphrase?: MnemonicPassphrase,
-  xPub?: XPub
+  xPub?: XPub,
+  progressIntervalMs = 100
 ): { promise: Promise<WorkerPoolResult | void>, abort: () => void } => {
 
   if (isCryptoName(cryptoName) === false) { 
@@ -80,7 +81,8 @@ export default (
       mnemonicPassphrase,
       xPub, 
       maxAttemptsPerWorker, 
-      offset
+      offset,
+      progressIntervalMs
     )
     workerPoolStatus.workers.push(status)
     promises.push(promise)
