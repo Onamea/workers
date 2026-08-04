@@ -80,8 +80,8 @@ export default (
       shouldGenerateMnemonic,
       mnemonicPassphrase,
       xPub, 
-      maxAttemptsPerWorker, 
       offset,
+      maxAttemptsPerWorker, 
       progressIntervalMs
     )
     workerPoolStatus.workers.push(status)
