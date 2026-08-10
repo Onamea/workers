@@ -4,7 +4,7 @@
   "license": "MIT",
   "exports": "./mod.ts",
   "imports": {
-    "@vanice/types": "jsr:@vanice/types@^0.3.4"
+    "@onamea/types": "jsr:@onamea/types@^0.3.4"
   },
   "tasks": {
     "compile": "deno compile --allow-env --output onamea --include ./src/worker.ts ./src/main.ts",

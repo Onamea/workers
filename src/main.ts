@@ -11,7 +11,7 @@ import {
   isFingerprintedName,
   parseName,
   isMnemonicPassphrase
-} from "@vanice/types"
+} from "@onamea/types"
 import { getPositionalArg, getArgByName, hasArg } from "./lib/args.ts"
 import createWorkerPool from "./createWorkerPool.ts"
 

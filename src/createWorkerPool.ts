@@ -1,5 +1,5 @@
-import type { CryptoName, XPub, Name, FingerprintDisplay, MnemonicPassphrase, NameKey } from "@vanice/types"
-import { isCryptoName, isFingerprintDisplay, isName, maxIndex, fromFingerprintDisplay, toPrimaryName, publicKeyToPrimaryKey, toNameKey } from "@vanice/types"
+import type { CryptoName, XPub, Name, FingerprintDisplay, MnemonicPassphrase, NameKey } from "@onamea/types"
+import { isCryptoName, isFingerprintDisplay, isName, maxIndex, fromFingerprintDisplay, toPrimaryName, publicKeyToPrimaryKey, toNameKey } from "@onamea/types"
 import { type Result, spawnWorker } from "./spawnWorker.ts"
 import { type WorkerPoolStatus, type WorkerStatus, createWorkerPoolStatus, updateWorkerPoolStatus } from "./Status.ts"
 import throttle from "./lib/throttle.ts"

@@ -1,4 +1,4 @@
-import type { PrimaryChars, CryptoName, XPub, Fingerprint, MnemonicPassphrase } from "@vanice/types"
+import type { PrimaryChars, CryptoName, XPub, Fingerprint, MnemonicPassphrase } from "@onamea/types"
 import type { SuccessMessage, ProgressMessage } from "./worker.ts"
 import type { WorkerStatus } from "./Status.ts"
 import isDeno from "./lib/isDeno.ts"

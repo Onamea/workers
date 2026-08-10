@@ -8,7 +8,7 @@ import {
   generateKeyPair as generateKeyPairByCryptoName,
   derivePublicKeyFromXPub,
   displayPublicKey
-} from "@vanice/types"
+} from "@onamea/types"
 
 export type KeyPair = Omit<KeyPairDisplay, "privateKey" | "privateKeyDisplay"> & {
   privateKey?: PrivateKey
