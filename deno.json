@@ -1,5 +1,5 @@
 {
-  "name": "@vanice/vanice-pool",
+  "name": "@onamea/workers",
   "version": "0.3.4",
   "license": "MIT",
   "exports": "./mod.ts",
@@ -7,7 +7,7 @@
     "@vanice/types": "jsr:@vanice/types@^0.3.4"
   },
   "tasks": {
-    "compile": "deno compile --allow-env --output vanice --include ./src/worker.ts ./src/main.ts",
+    "compile": "deno compile --allow-env --output onamea --include ./src/worker.ts ./src/main.ts",
     "bundle": "deno bundle src/worker.ts --outdir dist",
     "run": "deno run --allow-read --allow-env src/main.ts"
   }
