@@ -1,4 +1,4 @@
-import { type XPub, publicKeyToFingerprint, publicKeyToPrimaryKey } from "@onamea/types"
+import { type XPub, nameKeyToFingerprint, publicKeyToPrimaryKey, toNameKey } from "@onamea/types"
 import { type KeyPair, generateKeyPair } from "./generateKeyPair.ts"
 import equalArrays from "./lib/utils/equalArrays.ts"
 
@@ -24,6 +24,7 @@ const worker = self as unknown as Worker
 worker.onmessage = async (event: MessageEvent) => {
 
   const {
+    name,
     primaryName,
     fingerprint,
     cryptoName,
@@ -60,12 +61,15 @@ worker.onmessage = async (event: MessageEvent) => {
     const primaryKey = publicKeyToPrimaryKey(cryptoName, publicKey)
     const value = primaryKey.substring(0, searchLength)
     const isNameMatch = value === primaryName
-    let isFingerprintMatch = true
-    if (fingerprint !== undefined) {
-      const fullFingerprint = await publicKeyToFingerprint(publicKey)
-      isFingerprintMatch = equalArrays(fullFingerprint.slice(0, fingerprintLength), fingerprint)
+    const shouldMatchFingerprint = fingerprint !== undefined
+    let isMatch = isNameMatch
+    if (isNameMatch && shouldMatchFingerprint) {
+      const nameKey = toNameKey(name, primaryKey)
+      const fullFingerprint = await nameKeyToFingerprint(nameKey)
+      const isFingerprintMatch = equalArrays(fullFingerprint.slice(0, fingerprintLength), fingerprint)
+      isMatch = isFingerprintMatch
     }
-    if (isNameMatch && isFingerprintMatch) {
+    if (isMatch) {
       worker.postMessage({
         success: true,
         ...keyPair,

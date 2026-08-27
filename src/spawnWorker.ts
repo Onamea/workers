@@ -1,4 +1,4 @@
-import type { PrimaryChars, CryptoName, XPub, Fingerprint, MnemonicPassphrase } from "@onamea/types"
+import type { PrimaryChars, CryptoName, XPub, Fingerprint, MnemonicPassphrase, Name } from "@onamea/types"
 import type { SuccessMessage, ProgressMessage } from "./worker.ts"
 import type { WorkerStatus } from "./Status.ts"
 import isDeno from "./lib/isDeno.ts"
@@ -20,6 +20,7 @@ const defaultUrl = new URL(isDeno ? "./worker.ts" : "/worker.js", import.meta.ur
 export const spawnWorker = (
   cryptoName: CryptoName,
   id: WorkerStatus["workerId"], 
+  name: Name,
   primaryName: PrimaryChars, 
   fingerprint?: Fingerprint,
   url: URL = defaultUrl,
@@ -110,6 +111,7 @@ export const spawnWorker = (
 
       worker.postMessage({
         cryptoName,
+        name,
         primaryName,
         fingerprint,
         shouldGenerateMnemonic,

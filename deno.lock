@@ -1,68 +1,62 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@noble/curves@2.0.1": "2.0.1",
-    "jsr:@noble/ed25519@3": "3.0.1",
-    "jsr:@noble/hashes@2": "2.0.1",
-    "jsr:@noble/hashes@2.0.1": "2.0.1",
-    "jsr:@noble/hashes@^1.8.0": "1.8.0",
-    "jsr:@noble/secp256k1@3": "3.0.0",
-    "jsr:@onamea/types@~0.3.4": "0.3.7",
-    "jsr:@scure/base@2.0.0": "2.0.0",
-    "jsr:@scure/bip32@^2.0.1": "2.0.1",
-    "jsr:@scure/bip39@^2.0.1": "2.0.1"
+    "jsr:@noble/curves@2.3.0": "2.3.0",
+    "jsr:@noble/ed25519@^3.1.0": "3.1.0",
+    "jsr:@noble/hashes@2.3.0": "2.3.0",
+    "jsr:@noble/secp256k1@3.1.0": "3.1.0",
+    "jsr:@onamea/types@~0.5.2": "0.5.2",
+    "jsr:@scure/base@2.3.0": "2.3.0",
+    "jsr:@scure/bip32@^2.2.0": "2.3.0",
+    "jsr:@scure/bip39@^2.2.0": "2.3.0"
   },
   "jsr": {
-    "@noble/curves@2.0.1": {
-      "integrity": "21ef41d207a203f60ba37a4fdcbc4f4a545b10c5dab7f293889f18292f81ab23",
+    "@noble/curves@2.3.0": {
+      "integrity": "bd5045770794f80d2db22b1819cf94b8e4c0254b6ee0da178b860c61c37bf324",
       "dependencies": [
-        "jsr:@noble/hashes@2"
+        "jsr:@noble/hashes"
       ]
     },
-    "@noble/ed25519@3.0.1": {
-      "integrity": "a347b5fbb73cdefdef2adb5d79d5f62805657304be315de498479d7af51617bc"
+    "@noble/ed25519@3.1.0": {
+      "integrity": "30a76690b05ef5e71cf9573d9617a8483cdf5368414040909b028802103fdc85"
     },
-    "@noble/hashes@1.8.0": {
-      "integrity": "b52a2fcb4d02f8d8137871564a31f1ee9e2b0d15eedabbf32d2f7333f0abc939"
+    "@noble/hashes@2.3.0": {
+      "integrity": "dcbcf932492f0453e5abe95bdc610d645084883c3fe0e9055802462ad7fc719b"
     },
-    "@noble/hashes@2.0.1": {
-      "integrity": "e0e908292a0bf91099cf8ba0720a1647cef82ab38b588815b5e9535b4ff4d7bb"
+    "@noble/secp256k1@3.1.0": {
+      "integrity": "cd6b02d94b96ce37f6ef332fa20ebaeefa603edda5e3488f15be06fd1a52a359"
     },
-    "@noble/secp256k1@3.0.0": {
-      "integrity": "8d1639a9c06fcffacf720d8319e8e996e9fbfbaf868324e4cec5dc56b2ade1b9"
-    },
-    "@onamea/types@0.3.7": {
-      "integrity": "c48c0f7a433e060e5b38ac8b6d89561ed6f48251dbe931b3d9b3edfd32b05f31",
+    "@onamea/types@0.5.2": {
+      "integrity": "3ceb434cec036ce3cedc7549a5e13f8f85df93daa894999d0143e51811023967",
       "dependencies": [
         "jsr:@noble/ed25519",
-        "jsr:@noble/hashes@^1.8.0",
+        "jsr:@noble/hashes",
         "jsr:@noble/secp256k1",
         "jsr:@scure/bip32",
         "jsr:@scure/bip39"
       ]
     },
-    "@scure/base@2.0.0": {
-      "integrity": "2828432e39fdfc6712ce2a3029c56621e293e38ac5aa02be8c5ead312836fe2f"
+    "@scure/base@2.3.0": {
+      "integrity": "c63d67912885ed1f0412200d896f3695f1b1a5b01a323ae8792d9d53bc20e608"
     },
-    "@scure/bip32@2.0.1": {
-      "integrity": "c35ab32dddac27cef80cf3f818294d2dc2c9fdb42f524f1dc1fda9f0f20d149a",
+    "@scure/bip32@2.3.0": {
+      "integrity": "0c42aa8bcbed4bae5a429ce71aba02cb48e9b1af8d282bc55983871ad3eaa652",
       "dependencies": [
         "jsr:@noble/curves",
-        "jsr:@noble/hashes@2.0.1",
+        "jsr:@noble/hashes",
         "jsr:@scure/base"
       ]
     },
-    "@scure/bip39@2.0.1": {
-      "integrity": "18c276b3c6bb5ffa5cb369f1602f00a2e90a11e24ddd32afebc399c57dbd1550",
+    "@scure/bip39@2.3.0": {
+      "integrity": "f774ade2d9b656ad4ed85b0a350baa7d701fa57667574b690108491407652c19",
       "dependencies": [
-        "jsr:@noble/hashes@2.0.1",
-        "jsr:@scure/base"
+        "jsr:@noble/hashes"
       ]
     }
   },
   "workspace": {
     "dependencies": [
-      "jsr:@onamea/types@~0.3.4"
+      "jsr:@onamea/types@~0.5.2"
     ]
   }
 }

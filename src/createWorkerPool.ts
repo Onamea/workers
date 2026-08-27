@@ -73,6 +73,7 @@ export default (
     const [status, promise, terminationMethod] = spawnWorker(
       cryptoName, 
       i, 
+      name,
       primaryName, 
       fingerprint,
       url, 

@@ -1,16 +1,16 @@
 import { 
   isName, 
   toPrimaryName, 
-  publicKeyToPrimaryKey, 
-  primaryKeyToFingerprintedName, 
-  primaryKeyToFingerprint, 
   displayFingerprint, 
   toNameKey,
   isCryptoName,
   isXPub,
   isFingerprintedName,
   parseName,
-  isMnemonicPassphrase
+  isMnemonicPassphrase,
+  nameKeyToPrimaryKey,
+  nameKeyToFingerprintedName,
+  nameKeyToFingerprint
 } from "@onamea/types"
 import { getPositionalArg, getArgByName, hasArg } from "./lib/args.ts"
 import createWorkerPool from "./createWorkerPool.ts"
@@ -83,37 +83,44 @@ try {
     Deno.exit(1)
   }
 
-  const { privateKey, privateKeyDisplay, publicKey, publicKeyDisplay, mnemonicDisplay, index } = result
-  const primaryKey = publicKeyToPrimaryKey(cryptoName, publicKey)
-  const [fingerprintedName] = await primaryKeyToFingerprintedName(primaryKey, name)
+  const { privateKey, privateKeyDisplay, publicKey, publicKeyDisplay, mnemonicDisplay, nameKey, index } = result
+  const primaryKey = nameKeyToPrimaryKey(nameKey)
+  const fingerprintedName = await nameKeyToFingerprintedName(nameKey)
 
-  console.log("\nName found!\n")
-  console.log("fingerprinted name:", fingerprintedName)
+  console.log(`\nName found!: ${ fingerprintedName }`)
+
+  console.log("\n================================\n")
+
+  console.log("Name:", name)
+  console.log("NameKey:", toNameKey(name, primaryKey))
+  console.log("FingerprintedName:", fingerprintedName)
+  console.log("Fingerprint:", displayFingerprint(await nameKeyToFingerprint(nameKey)))
+  console.log("PrimaryKey:", primaryKey)
+  console.log("PublicKeyDisplay:", publicKeyDisplay)
+  console.log(`PublicKey (${ cryptoName }):`, publicKey)
+
+  console.log("\n================================\n")
 
   if (privateKey !== undefined) {
-    console.log(`private key (${ cryptoName }):`, privateKey)
-    console.log("private key hex:", privateKeyDisplay)
+    console.log(`PrivateKey (${ cryptoName }):`, privateKey)
+    console.log("PrivateKeyDisplay:", privateKeyDisplay)
     if (mnemonicDisplay !== undefined) {
-      console.log("mnemonic:", mnemonicDisplay)
+      console.log("MnemonicDisplay:", mnemonicDisplay)
     }
     if (passphrase !== undefined) {
-      console.log("passphrase:", passphrase)
+      console.log("Passphrase:", passphrase)
     }
   } else if (xPub !== undefined) {
     console.log("xpub:", xPub)
     if (index === undefined) {
       console.error("Index is undefined despite xPub being provided")
     } else {
-      console.log("index:", index)
+      console.log("Index:", index)
     }
   }
 
-  console.log(`public key (${ cryptoName }):`, publicKey)
-  console.log("public key hex:", publicKeyDisplay)
-  console.log("primary key:", primaryKey)
-  console.log("name:", name)
-  console.log("fingerprint:", displayFingerprint(await primaryKeyToFingerprint(primaryKey)))
-  console.log("name key:", toNameKey(name, primaryKey))
+  Deno.exit(0)
+
 } catch (error) {
   console.error(error)
   Deno.exit(1)
