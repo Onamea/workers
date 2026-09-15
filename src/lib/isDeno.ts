@@ -1,1 +1,1 @@
-export default typeof Deno !== "undefined"
+export default "Deno" in globalThis

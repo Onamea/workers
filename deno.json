@@ -8,7 +8,10 @@
   },
   "tasks": {
     "compile": "deno compile --allow-env --output onamea --include ./src/worker.ts ./src/main.ts",
-    "bundle": "deno bundle src/worker.ts --outdir dist",
-    "run": "deno run --allow-read --allow-env src/main.ts"
-  }
+    "bundle": "deno bundle src/worker.ts --outdir bundle",
+    "run": "deno run --allow-read --allow-env src/main.ts",
+    "npm:build": "deno run --no-lock --allow-read --allow-write --allow-env --allow-net --allow-run npm/build.ts",
+    "npm:publish": "deno task npm:build && npm publish ./dist"
+  },
+  "exclude": ["dist/"]
 }
